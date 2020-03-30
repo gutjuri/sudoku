@@ -11,7 +11,7 @@ Currently, we can generate sudokus that have exactly one unique solution. We can
 ## ToDos
 
 * [ ] GUI that allows to solve sudokus interactively. I'll do this using threepenny-gui.
-* [ ] Output sudokus in a printable format.
+* [x] Output sudokus in a printable format.
 * [ ] Add a convenient way to input sudokus.
 
 ## Known Issues
