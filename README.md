@@ -8,6 +8,12 @@ I'm getting real tired of solving sudokus, that's why I'd like to automate it. A
 
 Currently, we can generate sudokus that have exactly one unique solution. We can solve sudokus with an arbitrary number of solutions. We don't have a gui yet.
 
+## ToDos
+
+* [ ] GUI that allows to solve sudokus interactively. I'll do this using threepenny-gui.
+* [ ] Output sudokus in a printable format.
+* [ ] Add a convenient way to input sudokus.
+
 ## Known Issues
 
 * Sudoku generation is very slow. The time needed for generation is non-deterministic, which means it can range from seconds up to several minutes.
