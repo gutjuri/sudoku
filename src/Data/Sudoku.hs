@@ -7,8 +7,6 @@ module Data.Sudoku
   , newSudoku
   , (!)
   , set
-  , cols
-  , rows
   , isValid
   , solve
   , randomSudoku
@@ -19,12 +17,17 @@ where
 import           Control.Monad
 import           Data.Array              hiding ( (!) )
 import qualified Data.Array                    as A
-import           Data.List
-import           Data.Function
-import           Data.Bifunctor
-import           Data.Char
-import           System.Random
-import           System.Random.Shuffle
+import           Data.Function                  ( on )
+import           Data.Bifunctor                 ( bimap )
+import           Data.Char                      ( intToDigit )
+import           System.Random                  ( mkStdGen )
+import           System.Random.Shuffle          ( shuffle' )
+import           Data.List                      ( sortBy
+                                                , groupBy
+                                                , intercalate
+                                                , foldl'
+                                                , (\\)
+                                                )
 
 data SudokuCell = Fixed Int | Flex Int | None
   deriving (Eq, Show)

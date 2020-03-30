@@ -1,10 +1,10 @@
 module Main where
 
 import           Data.Sudoku
-import           Data.Maybe
-import           Text.Read
-import           System.Environment
-import           System.Random
+import           Data.Maybe                     ( fromMaybe )
+import           Text.Read                      ( readMaybe )
+import           System.Environment             ( getArgs )
+import           System.Random                  ( randomIO )
 
 main :: IO ()
 main = do
