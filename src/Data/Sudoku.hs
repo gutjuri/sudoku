@@ -135,8 +135,53 @@ randomSudoku seed diff = flexToFixed <$> remove diff rns initialField
 
 
 pp :: Sudoku -> String
-pp = intercalate "\n" . map (map toSym) . rows
+pp = formatRows . map (formatRow . map toSym) . rows
  where
   toSym (Fixed n) = intToDigit n
   toSym (Flex  n) = intToDigit n
-  toSym _         = '.'
+  toSym _         = ' '
+  formatRow :: String -> String
+  formatRow row =
+    [ '║'
+    , row !! 0
+    , '│'
+    , row !! 1
+    , '│'
+    , row !! 2
+    , '║'
+    , row !! 3
+    , '│'
+    , row !! 4
+    , '│'
+    , row !! 5
+    , '║'
+    , row !! 6
+    , '│'
+    , row !! 7
+    , '│'
+    , row !! 8
+    , '║'
+    ]
+  formatRows :: [String] -> String
+  formatRows rows = intercalate
+    "\n"
+    [ "╔═╤═╤═╦═╤═╤═╦═╤═╤═╗"
+    , rows !! 0
+    , "╟─┼─┼─╫─┼─┼─╫─┼─┼─╢"
+    , rows !! 1
+    , "╟─┼─┼─╫─┼─┼─╫─┼─┼─╢"
+    , rows !! 2
+    , "╠═╪═╪═╬═╪═╪═╬═╪═╪═╣"
+    , rows !! 3
+    , "╟─┼─┼─╫─┼─┼─╫─┼─┼─╢"
+    , rows !! 4
+    , "╟─┼─┼─╫─┼─┼─╫─┼─┼─╢"
+    , rows !! 5
+    , "╠═╪═╪═╬═╪═╪═╬═╪═╪═╣"
+    , rows !! 6
+    , "╟─┼─┼─╫─┼─┼─╫─┼─┼─╢"
+    , rows !! 7
+    , "╟─┼─┼─╫─┼─┼─╫─┼─┼─╢"
+    , rows !! 8
+    , "╚═╧═╧═╩═╧═╧═╩═╧═╧═╝"
+    ]
