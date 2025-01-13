@@ -1,10 +1,12 @@
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 module Data.Sudoku
   ( Sudoku
   , SudokuCell(..)
   , emptySudoku
   , newSudoku
+  , deserialize
   , (!)
   , set
   , isValid
@@ -15,13 +17,16 @@ module Data.Sudoku
 where
 
 import           Control.Monad
+import           System.Random                  ( mkStdGen )
+import           System.Random.Shuffle          ( shuffle' )
+import           GHC.Generics
 import           Data.Array              hiding ( (!) )
 import qualified Data.Array                    as A
 import           Data.Function                  ( on )
 import           Data.Bifunctor                 ( bimap )
 import           Data.Char                      ( intToDigit )
-import           System.Random                  ( mkStdGen )
-import           System.Random.Shuffle          ( shuffle' )
+import           Data.Aeson              hiding ( Array )
+import           Data.ByteString.Lazy           ( ByteString )
 import           Data.List                      ( sortBy
                                                 , groupBy
                                                 , intercalate
@@ -30,10 +35,20 @@ import           Data.List                      ( sortBy
                                                 )
 
 data SudokuCell = Fixed Int | Flex Int | None
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
+
+instance ToJSON SudokuCell where
+
+instance FromJSON SudokuCell where
 
 newtype Sudoku = Sudoku { getSudoku :: Array (Int, Int) SudokuCell }
-  deriving (Eq, Show)
+  deriving (Eq, Show, Generic)
+
+instance ToJSON Sudoku where
+  toJSON Sudoku {..} = toJSON $ assocs getSudoku
+
+deserialize :: ByteString -> Maybe Sudoku
+deserialize bs = (Sudoku . array ((1, 1), (9, 9))) <$> decode bs
 
 emptySudoku :: Sudoku
 emptySudoku = Sudoku $ listArray ((1, 1), (9, 9)) $ repeat None

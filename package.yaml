@@ -22,6 +22,8 @@ description:         Please see the README on GitHub at <https://github.com/juri
 dependencies:
 - base >= 4.7 && < 5
 - array >= 0.5.4.0
+- aeson >= 1.4.7.0
+- bytestring
 
 ghc-options:
 - -O2
@@ -31,7 +33,7 @@ library:
   source-dirs: src
   dependencies:
   - random >= 1.1
-  - random-shuffle >= 0.0.4 
+  - random-shuffle >= 0.0.4
 
 executables:
   sudoku-gen:
@@ -54,7 +56,6 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - sudoku
-    - threepenny-gui >= 0.8.3.1  
 
 tests:
   sudoku-test:

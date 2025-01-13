@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a5a17927ee84f6732b4ccbebd071fffdab6fed5ede3f33fc94bb597b6dc02df8
+-- hash: cdffb96253284688116c8a8ba513da9a7dc0ae3a6a86621e3c102db3e5589085
 
 name:           sudoku
 version:        0.1.0.0
@@ -34,8 +34,10 @@ library
       src
   ghc-options: -O2 -Wall
   build-depends:
-      array >=0.5.4.0
+      aeson >=1.4.7.0
+    , array >=0.5.4.0
     , base >=4.7 && <5
+    , bytestring
     , random >=1.1
     , random-shuffle >=0.0.4
   default-language: Haskell2010
@@ -48,8 +50,10 @@ executable sudoku-gen
       app
   ghc-options: -O2 -Wall
   build-depends:
-      array >=0.5.4.0
+      aeson >=1.4.7.0
+    , array >=0.5.4.0
     , base >=4.7 && <5
+    , bytestring
     , random >=1.1
     , sudoku
   default-language: Haskell2010
@@ -62,10 +66,11 @@ executable sudoku-gui
       gui
   ghc-options: -O2 -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array >=0.5.4.0
+      aeson >=1.4.7.0
+    , array >=0.5.4.0
     , base >=4.7 && <5
+    , bytestring
     , sudoku
-    , threepenny-gui >=0.8.3.1
   default-language: Haskell2010
 
 test-suite sudoku-test
@@ -77,8 +82,10 @@ test-suite sudoku-test
       test
   ghc-options: -O2 -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array >=0.5.4.0
+      aeson >=1.4.7.0
+    , array >=0.5.4.0
     , base >=4.7 && <5
+    , bytestring
     , hspec
     , sudoku
   default-language: Haskell2010
